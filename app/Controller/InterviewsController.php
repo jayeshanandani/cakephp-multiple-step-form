@@ -46,15 +46,62 @@ class InterviewsController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->interview->create();
-			if ($this->interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'), 'default', array('class' => 'alert alert-success'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+	public function add($step=null) {
+		
+		if ($step != null) {
+			if ($this->request->is('post')) {
+				if($step==1){
+					$this->Interview->create();
+					if ($this->Interview->save($this->request->data)) {
+						$this->Session->setFlash(__('The interview has been saved.'), 'default', array('class' => 'alert alert-success'));
+						return $this->redirect(array('action' => 'add','2'));
+					} else {
+						$this->Session->setFlash(__('Step 1 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+					}
+				}
+				elseif($step==2){
+					$this->InterviewTraining->create();
+					if ($this->Interview->save($this->request->data)) {
+						$this->Session->setFlash(__('The planned training have been saved.'), 'default', array('class' => 'alert alert-success'));
+						return $this->redirect(array('action' => 'add','2'));
+					} else {
+						$this->Session->setFlash(__('Step 2 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+					}
+				}
+				elseif($step==3){
+					$this->InterviewTraining->create();
+					if ($this->Interview->save($this->request->data)) {
+						$this->Session->setFlash(__('The unplanned training have been saved.'), 'default', array('class' => 'alert alert-success'));
+						return $this->redirect(array('action' => 'add','2'));
+					} else {
+						$this->Session->setFlash(__('Step 3 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+					}
+				}
+				elseif($step==4){
+					$this->InterviewInnovation->create();
+					if ($this->InterviewInnovation->save($this->request->data)) {
+						$this->Session->setFlash(__('The innovations have been saved.'), 'default', array('class' => 'alert alert-success'));
+						return $this->redirect(array('action' => 'add','2'));
+					} else {
+						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+					}
+				}
 			}
+			else {
+				if($this->Session->check('interview')){
+					$this->request->data = $this->Session->read('interview');
+				}
+				else {
+					if($step!=1){
+						$this->Session->setFlash(__('The interview session could not be found, restarting.'), 'default', array('class' => 'alert alert-danger'));
+						$this->redirect('/interviews/add/1');
+					}
+				}
+			}
+			$this->render('step'.$step);
+		}
+		else {
+			$this->redirect('/interviews/add/1');
 		}
 	}
 
