@@ -1,3 +1,45 @@
+<script type="text/javascript">
+
+ $(document).ready(function() {
+
+        var newRowNum = 1;        
+        
+        $("#add").click(function() {
+        	newRowNum += 1;
+        	var addRow = $('#mytable tbody>tr:last');
+
+        	var newRow = addRow.clone();
+        	$('input',newRow).val('');
+        	$('td:first-child', newRow).html(newRowNum);
+        	$('#InnovationInnovationName', newRow).each(function(i){
+            	var newID = 'data[Innovation][' + newRowNum + '][innovation_name]';
+	            $(this).attr('name',newID);
+        	});
+        	$('#InnovationTrainingInspiration', newRow).each(function(i){
+            	var newID = 'data[Innovation][' + newRowNum + '][inspiration]';
+	            $(this).attr('name',newID);
+        	});
+        	$('#InnovationHowImplemented', newRow).each(function(i){
+            	var newID = 'data[Innovation][' + newRowNum + '][how_implemented]';
+	            $(this).attr('name',newID);
+        	});
+        	$('#InnovationEvaluationMechanism', newRow).each(function(i){
+            	var newID = 'data[Innovation][' + newRowNum + '][evalution_mechanism]';
+	            $(this).attr('name',newID);
+        	});
+        	$('#InnovationChanges', newRow).each(function(i){
+            	var newID = 'data[Innovation][' + newRowNum + '][changes]';
+	            $(this).attr('name',newID);
+        	});
+       
+        	newRow.insertAfter(addRow);
+          	return false;
+    	});
+   
+          
+    });    
+</script>
+
 <div class="innovations form">
 
 	<div class="row">
@@ -14,7 +56,7 @@
 
 		<div class="col-md-12" style="float:none;">
 			<?php echo $this->Form->create('Innovation', array('role' => 'form')); ?>
-			<table class="table table-striped" width="100%">
+			<table class="table table-striped" width="100%" id="mytable">
 				<tr>
 					<th colspan="4">Q.4 a. Do you have any special trainings run for PWD employees at your organization?</th>
 					<th><div class="form-group">
@@ -55,19 +97,19 @@
 				</tr>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
+					<?php echo $this->Form->input('innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false,'name'=>'data[Innovation][1][innovation_name']));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
+					<?php echo $this->Form->input('inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false,'name'=>'data[Innovation][1][inspiration']));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
+					<?php echo $this->Form->input('how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false,'name'=>'data[Innovation][1][how_implemented']));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
+					<?php echo $this->Form->input('evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false,'name'=>'data[Innovation][1][evalution_mechanism']));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
+					<?php echo $this->Form->input('changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false,'name'=>'data[Innovation][1][changes]'));?>
 				</div></th>
 				</tr>
 				<tr>
