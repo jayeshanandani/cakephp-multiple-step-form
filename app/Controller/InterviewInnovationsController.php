@@ -1,13 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * InterviewInnovations Controller
+ * SurveyInnovations Controller
  *
- * @property InterviewInnovation $InterviewInnovation
+ * @property SurveyInnovation $SurveyInnovation
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class InterviewInnovationsController extends AppController {
+class SurveyInnovationsController extends AppController {
 
 /**
  * Components
@@ -22,8 +22,8 @@ class InterviewInnovationsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->InterviewInnovation->recursive = 0;
-		$this->set('interviewInnovations', $this->Paginator->paginate());
+		$this->SurveyInnovation->recursive = 0;
+		$this->set('surveyInnovations', $this->Paginator->paginate());
 	}
 
 /**
@@ -34,11 +34,11 @@ class InterviewInnovationsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->InterviewInnovation->exists($id)) {
-			throw new NotFoundException(__('Invalid InterviewInnovation'));
+		if (!$this->SurveyInnovation->exists($id)) {
+			throw new NotFoundException(__('Invalid SurveyInnovation'));
 		}
-		$options = array('conditions' => array('InterviewInnovation.' . $this->InterviewInnovation->primaryKey => $id));
-		$this->set('interviewInnovation', $this->InterviewInnovation->find('first', $options));
+		$options = array('conditions' => array('SurveyInnovation.' . $this->SurveyInnovation->primaryKey => $id));
+		$this->set('surveyInnovation', $this->SurveyInnovation->find('first', $options));
 	}
 
 /**
@@ -48,12 +48,12 @@ class InterviewInnovationsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->InterviewInnovation->create();
-			if ($this->InterviewInnovation->save($this->request->data)) {
-				$this->Session->setFlash(__('The InterviewInnovation has been saved.'), 'default', array('class' => 'alert alert-success'));
+			$this->SurveyInnovation->create();
+			if ($this->SurveyInnovation->save($this->request->data)) {
+				$this->Session->setFlash(__('The Innovation has been saved.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The InterviewInnovation could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The Innovation could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 			}
 		}
 	}
@@ -66,19 +66,19 @@ class InterviewInnovationsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->InterviewInnovation->exists($id)) {
-			throw new NotFoundException(__('Invalid InterviewInnovation'));
+		if (!$this->SurveyInnovation->exists($id)) {
+			throw new NotFoundException(__('Invalid SurveyInnovation'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->InterviewInnovation->save($this->request->data)) {
-				$this->Session->setFlash(__('The InterviewInnovation has been saved.'), 'default', array('class' => 'alert alert-success'));
+			if ($this->SurveyInnovation->save($this->request->data)) {
+				$this->Session->setFlash(__('The SurveyInnovation has been saved.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The InterviewInnovation could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The SurveyInnovation could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 			}
 		} else {
-			$options = array('conditions' => array('InterviewInnovation.' . $this->InterviewInnovation->primaryKey => $id));
-			$this->request->data = $this->InterviewInnovation->find('first', $options);
+			$options = array('conditions' => array('SurveyInnovation.' . $this->SurveyInnovation->primaryKey => $id));
+			$this->request->data = $this->SurveyInnovation->find('first', $options);
 		}
 	}
 
@@ -90,15 +90,15 @@ class InterviewInnovationsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		$this->InterviewInnovation->id = $id;
-		if (!$this->InterviewInnovation->exists()) {
-			throw new NotFoundException(__('Invalid InterviewInnovation'));
+		$this->SurveyInnovation->id = $id;
+		if (!$this->SurveyInnovation->exists()) {
+			throw new NotFoundException(__('Invalid SurveyInnovation'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->InterviewInnovation->delete()) {
-			$this->Session->setFlash(__('The InterviewInnovation has been deleted.'), 'default', array('class' => 'alert alert-success'));
+		if ($this->SurveyInnovation->delete()) {
+			$this->Session->setFlash(__('The SurveyInnovation has been deleted.'), 'default', array('class' => 'alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('The InterviewInnovation could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('The SurveyInnovation could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

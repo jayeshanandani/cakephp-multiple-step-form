@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1><?php echo __('Add Interview Data'); ?></h1>
+				<h1><?php echo __('Add Profile'); ?></h1>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 	<div class="row">
 	
 		<div class="col-md-12" style="float:none">
-			<?php echo $this->Form->create('Interview', array('role' => 'form','url' => array('controller' => 'interviews', 'action' => 'add','1'))); ?>
+			<?php echo $this->Form->create('Profile', array('type'=>'file','role' => 'form','url' => array('controller' => 'interviews', 'action' => 'add','1'))); ?>
 		<table class="table  table-striped" width="100%">
 			
 			<tr>

@@ -13,7 +13,7 @@
 	<div class="row">
 
 		<div class="col-md-12"> <!-- Here actual Model is different but I renamed create to have this form in same model -->
-			<?php echo $this->Form->create('UnplannedTraining', array('role' => 'form','action'=>'step3')); ?>
+			<?php echo $this->Form->create('Training', array('role' => 'form','action'=>'step3')); ?>
 		
 			<table class="table table-striped" width="100%">
 			<tr>
