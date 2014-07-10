@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Interview Model
+ * Profile Model
  *
  */
-class Interview extends AppModel {
+class Profile extends AppModel {
 
-	public $hasMany = array('InterviewInnovation','InterviewTraining');
+	public $belongsTo = array('Survey');
 
 	public $uploadDir = 'uploads';
 	

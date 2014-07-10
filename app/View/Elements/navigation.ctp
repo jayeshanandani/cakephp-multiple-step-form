@@ -10,10 +10,10 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><?php  echo $this->Html->link(__("Interviews"),array('controller' => 'interviews', 'action' => 'index')) ?></li>
-            <li><?php  echo $this->Html->link(__("Planned Training"),array('controller' => 'interview_trainings', 'action' => 'index','planned')) ?></li>
-            <li><?php  echo $this->Html->link(__("Unplanned Training"),array('controller' => 'interview_trainings', 'action' => 'index','unplanned')) ?></li>
-            <li><?php  echo $this->Html->link(__("Innovations"),array('controller' => 'interview_innovations', 'action' => 'index')) ?></li>
+            <li><?php  echo $this->Html->link(__("Profiles"),array('controller' => 'profiles', 'action' => 'index')) ?></li>
+            <li><?php  echo $this->Html->link(__("Planned Training"),array('controller' => 'trainings', 'action' => 'index','planned')) ?></li>
+            <li><?php  echo $this->Html->link(__("Unplanned Training"),array('controller' => 'trainings', 'action' => 'index','unplanned')) ?></li>
+            <li><?php  echo $this->Html->link(__("Innovations"),array('controller' => 'innovations', 'action' => 'index')) ?></li>
           </ul>
         </div><!--/.nav-collapse -->
       <!--</div>

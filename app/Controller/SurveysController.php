@@ -1,13 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * interviews Controller
+ * Surveys Controller
  *
- * @property interview $interview
+ * @property Survey $Survey
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class InterviewsController extends AppController {
+class SurveysController extends AppController {
 
 /**
  * Components
@@ -22,8 +22,8 @@ class InterviewsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Interview->recursive = 0;
-		$this->set('interviews', $this->Paginator->paginate());
+		$this->Survey->recursive = 0;
+		$this->set('Surveys', $this->Paginator->paginate());
 	}
 
 /**
@@ -34,11 +34,11 @@ class InterviewsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->interview->exists($id)) {
-			throw new NotFoundException(__('Invalid interview'));
+		if (!$this->Survey->exists($id)) {
+			throw new NotFoundException(__('Invalid Survey'));
 		}
-		$options = array('conditions' => array('interview.' . $this->interview->primaryKey => $id));
-		$this->set('interview', $this->interview->find('first', $options));
+		$options = array('conditions' => array('Survey.' . $this->Survey->primaryKey => $id));
+		$this->set('Survey', $this->Survey->find('first', $options));
 	}
 
 /**
@@ -52,24 +52,24 @@ class InterviewsController extends AppController {
 			if ($this->request->is('post')) {
 				debug($this->request->data);
 				if($step==1){
-					$this->Interview->create();
-					   $filename = $this->request->data['Interview']['filename']['name'];
+					$this->Survey->Profile->create();
+					   $filename = $this->request->data['Profile']['filename']['name'];
 					   debug($filename);
 			            $extension = pathinfo($filename, PATHINFO_EXTENSION);
 			            $name = pathinfo($filename, PATHINFO_FILENAME);
-			            $this->request->data['Interview']['file_name'] = $name;
-			            $this->request->data['Interview']['file_type'] = $extension;
+			            $this->request->data['Profile']['file_name'] = $name;
+			            $this->request->data['Profile']['file_type'] = $extension;
 			            debug($this->request->data);
-					if ($this->Interview->save($this->request->data)) {
-						$this->Session->setFlash(__('The interview has been saved.'), 'default', array('class' => 'alert alert-success'));
+					if ($this->Survey->save($this->request->data)) {
+						$this->Session->setFlash(__('The Survey has been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'add','2'));
 					} else {
 						$this->Session->setFlash(__('Step 1 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}
 				/*elseif($step==2){
-					$this->InterviewTraining->create();
-					if ($this->Interview->save($this->request->data)) {
+					$this->SurveyTraining->create();
+					if ($this->Survey->save($this->request->data)) {
 						$this->Session->setFlash(__('The planned training have been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'add','2'));
 					} else {
@@ -77,8 +77,8 @@ class InterviewsController extends AppController {
 					}
 				}
 				elseif($step==3){
-					$this->InterviewTraining->create();
-					if ($this->Interview->save($this->request->data)) {
+					$this->SurveyTraining->create();
+					if ($this->Survey->save($this->request->data)) {
 						$this->Session->setFlash(__('The unplanned training have been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'add','2'));
 					} else {
@@ -86,8 +86,8 @@ class InterviewsController extends AppController {
 					}
 				}*/
 				elseif($step==4){
-					$this->InterviewInnovation->create();
-					if ($this->InterviewInnovation->save($this->request->data)) {
+					$this->SurveyInnovation->create();
+					if ($this->SurveyInnovation->save($this->request->data)) {
 						$this->Session->setFlash(__('The innovations have been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'add','2'));
 					} else {
@@ -96,20 +96,20 @@ class InterviewsController extends AppController {
 				}
 			}
 			else {
-				if($this->Session->check('interview')){
-					$this->request->data = $this->Session->read('interview');
+				if($this->Session->check('Survey')){
+					$this->request->data = $this->Session->read('Survey');
 				}
 				else {
 					/*if($step!=1){
-						$this->Session->setFlash(__('The interview session could not be found, restarting.'), 'default', array('class' => 'alert alert-danger'));
-						$this->redirect('/interviews/add/1');
+						$this->Session->setFlash(__('The Survey session could not be found, restarting.'), 'default', array('class' => 'alert alert-danger'));
+						$this->redirect('/Surveys/add/1');
 					}*/
 				}
 			}
 			$this->render('step'.$step);
 		}
 		else {
-			$this->redirect('/interviews/add/1');
+			$this->redirect('/surveys/add/1');
 		}
 	}
 
@@ -121,19 +121,19 @@ class InterviewsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->interview->exists($id)) {
-			throw new NotFoundException(__('Invalid interview'));
+		if (!$this->Survey->exists($id)) {
+			throw new NotFoundException(__('Invalid Survey'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'), 'default', array('class' => 'alert alert-success'));
+			if ($this->Survey->save($this->request->data)) {
+				$this->Session->setFlash(__('The Survey has been saved.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				$this->Session->setFlash(__('The Survey could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 			}
 		} else {
-			$options = array('conditions' => array('interview.' . $this->interview->primaryKey => $id));
-			$this->request->data = $this->interview->find('first', $options);
+			$options = array('conditions' => array('Survey.' . $this->Survey->primaryKey => $id));
+			$this->request->data = $this->Survey->find('first', $options);
 		}
 	}
 
@@ -145,15 +145,15 @@ class InterviewsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		$this->interview->id = $id;
-		if (!$this->interview->exists()) {
-			throw new NotFoundException(__('Invalid interview'));
+		$this->Survey->id = $id;
+		if (!$this->Survey->exists()) {
+			throw new NotFoundException(__('Invalid Survey'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->interview->delete()) {
-			$this->Session->setFlash(__('The interview has been deleted.'), 'default', array('class' => 'alert alert-success'));
+		if ($this->Survey->delete()) {
+			$this->Session->setFlash(__('The Survey has been deleted.'), 'default', array('class' => 'alert alert-success'));
 		} else {
-			$this->Session->setFlash(__('The interview could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('The Survey could not be deleted. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
