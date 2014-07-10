@@ -52,6 +52,13 @@ class InterviewsController extends AppController {
 			if ($this->request->is('post')) {
 				if($step==1){
 					$this->Interview->create();
+					   $filename = $this->request->data['Interview']['filename']['name'];
+					   debug($filename);
+			            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+			            $name = pathinfo($filename, PATHINFO_FILENAME);
+			            $this->request->data['Interview']['file_name'] = $name;
+			            $this->request->data['Interview']['file_type'] = $extension;
+			            debug($this->request->data);
 					if ($this->Interview->save($this->request->data)) {
 						$this->Session->setFlash(__('The interview has been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'add','2'));
