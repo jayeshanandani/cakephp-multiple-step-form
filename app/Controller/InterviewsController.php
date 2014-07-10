@@ -50,6 +50,7 @@ class InterviewsController extends AppController {
 		
 		if ($step != null) {
 			if ($this->request->is('post')) {
+				debug($this->request->data);
 				if($step==1){
 					$this->Interview->create();
 					   $filename = $this->request->data['Interview']['filename']['name'];
@@ -66,7 +67,7 @@ class InterviewsController extends AppController {
 						$this->Session->setFlash(__('Step 1 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}
-				elseif($step==2){
+				/*elseif($step==2){
 					$this->InterviewTraining->create();
 					if ($this->Interview->save($this->request->data)) {
 						$this->Session->setFlash(__('The planned training have been saved.'), 'default', array('class' => 'alert alert-success'));
@@ -83,7 +84,7 @@ class InterviewsController extends AppController {
 					} else {
 						$this->Session->setFlash(__('Step 3 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
-				}
+				}*/
 				elseif($step==4){
 					$this->InterviewInnovation->create();
 					if ($this->InterviewInnovation->save($this->request->data)) {
@@ -99,10 +100,10 @@ class InterviewsController extends AppController {
 					$this->request->data = $this->Session->read('interview');
 				}
 				else {
-					if($step!=1){
+					/*if($step!=1){
 						$this->Session->setFlash(__('The interview session could not be found, restarting.'), 'default', array('class' => 'alert alert-danger'));
 						$this->redirect('/interviews/add/1');
-					}
+					}*/
 				}
 			}
 			$this->render('step'.$step);

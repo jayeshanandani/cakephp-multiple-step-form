@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<!--<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">        <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -16,6 +16,6 @@
             <li><?php  echo $this->Html->link(__("Innovations"),array('controller' => 'interview_innovations', 'action' => 'index')) ?></li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
+      <!--</div>
     </div>
-    </nav>
+    </nav>-->

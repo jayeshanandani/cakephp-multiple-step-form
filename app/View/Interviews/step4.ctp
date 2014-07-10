@@ -84,12 +84,17 @@
 				</tr>
 			</table>
 		</div>
-			<?php	echo $this->Html->link('Previous step',
-	array('action' => 'step3'),
-	array('class' => 'button')); ?>
-				
-			<div class="form-group">
-					<?php echo $this->Form->submit(__('Submit Form'), array('class' => 'btn btn-default')); ?>
+				<div class="row">
+		<div class="col-md-10">
+			<?php	echo $this->Html->link('Previous step',array('controller'=>'interview_datas','action' => 'add','3'),
+											array('class' => 'btn btn-default','id'=>'previous')); ?> 
+	</div>
+	<div class="col-md-2">			
+	<div class="form-group">
+					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
+				</div> 
+			</div>
+			</div>
 			<?php echo $this->Form->end() ?>
 
 		</div><!-- end col md 12 -->

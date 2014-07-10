@@ -149,11 +149,16 @@
 				</div></th>
 			</tr>
 		</table>					
-		
-				<div class="form-group">
+		<div class="row">
+		<div class="col-md-10">
+			
+	</div>
+	<div class="col-md-1">			
+	<div class="form-group">
 					<?php echo $this->Form->submit(__('Towards Step 2'), array('class' => 'btn btn-default')); ?>
-				</div>
-			<?php echo $this->Form->end() ?>
+				</div> 
+			</div>
+			</div>
 	
 
 		</div><!-- end col md 12 -->
