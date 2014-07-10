@@ -1,8 +1,12 @@
+<?php
+	$c = count($this->request->data['Training']);
+	if($c==0){ $c = 1; }
+?>
 <script type="text/javascript">
 
  $(document).ready(function() {
 
-        var newRowNum = 0;        
+        var newRowNum = <?php echo $c-1 ?>;
         
         $("#add").click(function() {
         	newRowNum += 1;
@@ -12,11 +16,18 @@
         	var newRow = addRow.clone();
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
+        	$('#Training'+a+'Planned', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][planned]';
+            	var newID = 'Training' + newRowNum + 'TNameTargetAudience';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
+	            $(this).attr('value','0');
+        	});
         	$('#UnplannedTraining'+a+'TNameTargetAudience', newRow).each(function(i){
             	var newName = 'data[UnplannedTraining][' + newRowNum + '][t_name_target_audience]';
-            	var newID = 'UnplannedTraining' + newRowNum + 'TNameTargetAudience';
-	            $(this).attr('name',newName).attr('id',newID);
-	            
+            	var newID = 'Training' + newRowNum + 'TNameTargetAudience';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
         	$('#UnplannedTraining'+a+'UnplannedTrainingDepartmentWise', newRow).each(function(i){
             	var newName = 'data[UnplannedTraining][' + newRowNum + '][UnplannedTraining_department_wise]';
@@ -109,7 +120,6 @@
 
 		<div class="col-md-12"> <!-- Here actual Model is different but I renamed create to have this form in same model -->
 			<?php echo $this->Form->create('Survey', array('role' => 'form','url' => array('controller' => 'surveys', 'action' => 'add','3'))); ?>
-			<?php echo $this->Form->input('UnplannedTraining.0.planned',array('type'=>'hidden','value'=>0)); ?>
 		 <a  id="add">Add new Row</a></td>
 			<table class="table table-striped" width="100%" id="mytable">
 			<tr>
@@ -131,45 +141,51 @@
 				<th>On-job Training(in %)</th>
 				<th>Others(in %)</th>
 				</tr>
+				<?php
+				for($i = 0; $i <= $c-1; $i++):
+				?>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Name & Target Audience', 'label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.planned',array('type'=>'hidden','value'=>0)); ?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Name & Target Audience', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.UnplannedTraining_department_wise', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Department Wise', 'label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.UnplannedTraining_department_wise', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Department Wise', 'label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.onjob_UnplannedTraining', array('class' => 'form-control', 'placeholder' => 'Onjob UnplannedTraining','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.onjob_UnplannedTraining', array('class' => 'form-control', 'placeholder' => 'Onjob UnplannedTraining','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.0.other_remarks', array('class' => 'form-control', 'placeholder' => 'Other','label' => false));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.other_remarks', array('class' => 'form-control', 'placeholder' => 'Other','label' => false));?>
 				</div></th>
 				</tr>
-	
+				<?php
+				endfor;
+				?>
 			</table>	
 
 			<div class="row">
