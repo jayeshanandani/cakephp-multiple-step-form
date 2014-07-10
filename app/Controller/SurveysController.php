@@ -47,44 +47,47 @@ class SurveysController extends AppController {
  * @return void
  */
 	public function add($step=null) {
-		
 		if ($step != null) {
-			if ($this->request->is('post')) {
-				debug($this->request->data);
+			if ($this->request->is('post')||$this->request->is('put')) {
 				if($step==1){
 					$this->Survey->Profile->create();
 					   $filename = $this->request->data['Profile']['filename']['name'];
-					   debug($filename);
 			            $extension = pathinfo($filename, PATHINFO_EXTENSION);
 			            $name = pathinfo($filename, PATHINFO_FILENAME);
 			            $this->request->data['Profile']['file_name'] = $name;
 			            $this->request->data['Profile']['file_type'] = $extension;
-			            debug($this->request->data);
 					if ($this->Survey->save($this->request->data)) {
 						$this->Session->setFlash(__('The Survey has been saved.'), 'default', array('class' => 'alert alert-success'));
-						return $this->redirect(array('action' => 'add','2'));
+						$this->request->data['Survey']['id'] = $this->Survey->getLastInsertID();
+						if($this->Session->check('Survey')){
+							$this->request->data += $this->Session->read('Survey');
+						}
+						$this->Session->write('Survey',$this->request->data);
+						if(($this->request->data['Profile']['no_planned_training']==0)&&($this->request->data['Profile']['no_unplanned_training']==0)){ $stage = 4; }
+						elseif(($this->request->data['Profile']['no_planned_training']==0)&&($this->request->data['Profile']['no_unplanned_training']!=0)){ $stage = 3; }
+						elseif(($this->request->data['Profile']['no_planned_training']!=0)&&($this->request->data['Profile']['no_unplanned_training']==0)){ $stage = 2; }
+						else { $stage = 2; }
+						return $this->redirect(array('action' => 'add',$stage));
 					} else {
 						$this->Session->setFlash(__('Step 1 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}
-				/*elseif($step==2){
-					$this->SurveyTraining->create();
-					if ($this->Survey->save($this->request->data)) {
-						$this->Session->setFlash(__('The planned training have been saved.'), 'default', array('class' => 'alert alert-success'));
-						return $this->redirect(array('action' => 'add','2'));
-					} else {
-						$this->Session->setFlash(__('Step 2 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+				elseif($step==2){
+					if($this->Session->check('Survey')){
+						$this->request->data += $this->Session->read('Survey');
 					}
+					$this->Session->write('Survey',$this->request->data);
+					if($this->request->data['Profile']['no_unplanned_training']==0){ $stage = 4; }
+					else { $stage = 3; }
+					return $this->redirect(array('action' => 'add',$stage));
 				}
 				elseif($step==3){
-					$this->SurveyTraining->create();
-					if ($this->Survey->save($this->request->data)) {
-						$this->Session->setFlash(__('The unplanned training have been saved.'), 'default', array('class' => 'alert alert-success'));
-						return $this->redirect(array('action' => 'add','2'));
-					} else {
-						$this->Session->setFlash(__('Step 3 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
+					if($this->Session->check('Survey')){
+						$this->request->data += $this->Session->read('Survey');
 					}
-				}*/
+					$this->Session->write('Survey',$this->request->data);
+					return $this->redirect(array('action' => 'add','4'));
+				}
 				elseif($step==4){
 					$this->SurveyInnovation->create();
 					if ($this->SurveyInnovation->save($this->request->data)) {
@@ -94,16 +97,23 @@ class SurveysController extends AppController {
 						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}
+				else {
+					$this->redirect('/surveys/add/1');
+				}
 			}
 			else {
 				if($this->Session->check('Survey')){
 					$this->request->data = $this->Session->read('Survey');
 				}
 				else {
-					/*if($step!=1){
+					if($step!=1){
 						$this->Session->setFlash(__('The Survey session could not be found, restarting.'), 'default', array('class' => 'alert alert-danger'));
-						$this->redirect('/Surveys/add/1');
-					}*/
+						$this->redirect('/surveys/add/1');
+					}
+				}
+				if($step>4){
+					$this->Session->setFlash(__('Invalid step, restarting.'), 'default', array('class' => 'alert alert-danger'));
+					$this->redirect('/surveys/add/1');
 				}
 			}
 			$this->render('step'.$step);

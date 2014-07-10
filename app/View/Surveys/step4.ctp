@@ -138,7 +138,12 @@
 		</div>
 				<div class="row">
 		<div class="col-md-10">
-			<?php	echo $this->Html->link('Previous step',array('controller'=>'interview_datas','action' => 'add','3'),
+		<?php
+			if(($this->request->data['Profile']['no_planned_training']==0)&&($this->request->data['Profile']['no_unplanned_training']==0)){ $stage = 1; }
+			elseif($this->request->data['Profile']['no_unplanned_training']!=0){ $stage = 3; }
+			elseif($this->request->data['Profile']['no_planned_training']!=0){ $stage = 2; }
+			else { $stage = 3; }
+			echo $this->Html->link('Previous step',array('controller'=>'surveys','action' => 'add',$stage),
 											array('class' => 'btn btn-default','id'=>'previous')); ?> 
 	</div>
 	<div class="col-md-2">			
