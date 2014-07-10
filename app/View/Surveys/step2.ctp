@@ -6,78 +6,79 @@
         
         $("#add").click(function() {
         	newRowNum += 1;
+        	b = newRowNum;
+        	var a = b-1;
         	var addRow = $('#mytable tbody>tr:last');
-
         	var newRow = addRow.clone();
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
-        	$('#Training0TNameTargetAudience', newRow).each(function(i){
+        	$('#Training'+a+'TNameTargetAudience', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][t_name_target_audience]';
             	var newID = 'Training' + newRowNum + 'TNameTargetAudience';
-	            $(this).attr('name',newName);
-	            $(this).attr('id',newID);
+	            $(this).attr('name',newName).attr('id',newID);
+	            
         	});
-        	$('#Training0TrainingDepartmentWise', newRow).each(function(i){
+        	$('#Training'+a+'TrainingDepartmentWise', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][training_department_wise]';
             	var newID = 'Training' + newRowNum + 'TrainingDepartmentWise';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0ClassRoom', newRow).each(function(i){
+        	$('#Training'+a+'ClassRoom', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][class_room]';
             	var newID = 'Training' + newRowNum + 'ClassRoom';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0Practical', newRow).each(function(i){
+        	$('#Training'+a+'Practical', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][practical]';
             	var newID = 'Training' + newRowNum + 'Practical';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0OnjobTraining', newRow).each(function(i){
+        	$('#Training'+a+'OnjobTraining', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][onjob_training]';
             	var newID = 'Training' + newRowNum + 'OnjobTraining';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0Others', newRow).each(function(i){
+        	$('#Training'+a+'Others', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][others]';
             	var newID = 'Training' + newRowNum + 'Others';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0UsedTechnology', newRow).each(function(i){
+        	$('#Training'+a+'UsedTechnology', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][used_technology]';
             	var newID = 'Training' + newRowNum + 'UsedTechnology';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0Duration', newRow).each(function(i){
+        	$('#Training'+a+'Duration', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][duration]';
             	var newID = 'Training' + newRowNum + 'Duration';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0NoTrainer', newRow).each(function(i){
+        	$('#Training'+a+'NoTrainer', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][no_trainer]';
             	var newID = 'Training' + newRowNum + 'NoTrainer';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0Outsourced', newRow).each(function(i){
+        	$('#Training'+a+'Outsourced', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][outsourced]';
             	var newID = 'Training' + newRowNum + 'Outsourced';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0BatchSize', newRow).each(function(i){
+        	$('#Training'+a+'BatchSize', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][batch_size]';
             	var newID = 'Training' + newRowNum + 'BatchSize';
 	            $(this).attr('name',newName);
 	            $(this).attr('id',newID);
         	});
-        	$('#Training0AvgNoEmpTrainYear', newRow).each(function(i){
+        	$('#Training'+a+'AvgNoEmpTrainYear', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][avg_no_emp_train_year]';
             	var newID = 'Training' + newRowNum + 'AvgNoEmpTrainYear';
 	            $(this).attr('name',newName);

@@ -2,62 +2,87 @@
 
  $(document).ready(function() {
 
-        var newRowNum = 1;        
+        var newRowNum = 0;        
         
         $("#add").click(function() {
         	newRowNum += 1;
+        	b = newRowNum;
+        	var a = b-1;
         	var addRow = $('#mytable tbody>tr:last');
-
         	var newRow = addRow.clone();
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
-        	$('#PlannedTrainingTNameTargetAudience', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][t_name_target_audience]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'TNameTargetAudience', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][t_name_target_audience]';
+            	var newID = 'Training' + newRowNum + 'TNameTargetAudience';
+	            $(this).attr('name',newName).attr('id',newID);
+	            
         	});
-        	$('#PlannedTrainingTrainingDepartmentWise', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][training_department_wise]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'TrainingDepartmentWise', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][training_department_wise]';
+            	var newID = 'Training' + newRowNum + 'TrainingDepartmentWise';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingClassRoom', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][class_room]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'ClassRoom', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][class_room]';
+            	var newID = 'Training' + newRowNum + 'ClassRoom';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingPractical', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][practical]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'Practical', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][practical]';
+            	var newID = 'Training' + newRowNum + 'Practical';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingOnjobTraining', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][onjob_training]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'OnjobTraining', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][onjob_training]';
+            	var newID = 'Training' + newRowNum + 'OnjobTraining';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingOthers', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][others]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'Others', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][others]';
+            	var newID = 'Training' + newRowNum + 'Others';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingUsedTechnology', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][used_technology]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'UsedTechnology', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][used_technology]';
+            	var newID = 'Training' + newRowNum + 'UsedTechnology';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingDuration', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][duration]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'Duration', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][duration]';
+            	var newID = 'Training' + newRowNum + 'Duration';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingNoTrainer', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][no_trainer]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'NoTrainer', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][no_trainer]';
+            	var newID = 'Training' + newRowNum + 'NoTrainer';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingBatchSize', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][batch_size]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'BatchSize', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][batch_size]';
+            	var newID = 'Training' + newRowNum + 'BatchSize';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingAvgNoEmpTrainYear', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][avg_no_emp_train_year]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'AvgNoEmpTrainYear', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][avg_no_emp_train_year]';
+            	var newID = 'Training' + newRowNum + 'AvgNoEmpTrainYear';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
-        	$('#PlannedTrainingOtherRemarks', newRow).each(function(i){
-            	var newID = 'data[PlannedTraining][' + newRowNum + '][other_remarks]';
-	            $(this).attr('name',newID);
+        	$('#Training'+a+'OtherRemarks', newRow).each(function(i){
+            	var newName = 'data[Training][' + newRowNum + '][other_remarks]';
+            	var newID = 'Training' + newRowNum + 'OtherRemarks';
+	            $(this).attr('name',newName);
+	            $(this).attr('id',newID);
         	});
         
         	newRow.insertAfter(addRow);
@@ -105,45 +130,45 @@
 				<th>On-job Training(in %)</th>
 				<th>Others(in %)</th>
 				</tr>
-
-				<tr>
+			<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'Training Name & Target Audience', 'label' => false,'name'=>'data[PlannedTraining][1][t_name_target_audience]'));?>
+					<?php echo $this->Form->input('Training.0.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'Training Name & Target Audience', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('training_department_wise', array('class' => 'form-control', 'placeholder' => 'Training Department Wise', 'label' => false,'name'=>'data[PlannedTraining][1][training_department_wise]'));?>
+					<?php echo $this->Form->input('Training.0.training_department_wise', array('class' => 'form-control', 'placeholder' => 'Training Department Wise', 'label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'name'=>'data[PlannedTraining][1][class_room]'));?>
+					<?php echo $this->Form->input('Training.0.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'name'=>'data[PlannedTraining][1][practical]'));?>
+					<?php echo $this->Form->input('Training.0.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('onjob_training', array('class' => 'form-control', 'placeholder' => 'Onjob Training','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'name'=>'data[PlannedTraining][1][onjob_training]'));?>
+					<?php echo $this->Form->input('Training.0.onjob_training', array('class' => 'form-control', 'placeholder' => 'Onjob Training','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'name'=>'data[PlannedTraining][1][others]'));?>
+					<?php echo $this->Form->input('Training.0.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false,'name'=>'data[PlannedTraining][1][used_technology]'));?>
+					<?php echo $this->Form->input('Training.0.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false,'name'=>'data[PlannedTraining][1][duration]'));?>
+					<?php echo $this->Form->input('Training.0.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false,'name'=>'data[PlannedTraining][1][no_trainer]'));?>
+					<?php echo $this->Form->input('Training.0.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false,'name'=>'data[PlannedTraining][1][batch_size]'));?>
+					<?php echo $this->Form->input('Training.0.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false,'name'=>'data[PlannedTraining][1][avg_no_emp_train_year]'));?></div></th>
+					<?php echo $this->Form->input('Training.0.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false));?>
+				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('other_remarks', array('class' => 'form-control', 'placeholder' => 'Other Remarks', 'label' => false,'name'=>'data[PlannedTraining][1][other_remarks]'));?>
-				</div>
-				</th>
+					<?php echo $this->Form->input('Training.0.other_remarks', array('class' => 'form-control', 'placeholder' => 'Other','label' => false));?>
+				</div></th>
 				</tr>
+	
 			</table>	
 
 			<div class="row">

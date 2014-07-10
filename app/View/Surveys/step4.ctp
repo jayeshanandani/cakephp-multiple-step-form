@@ -2,34 +2,41 @@
 
  $(document).ready(function() {
 
-        var newRowNum = 1;        
+        var newRowNum = 0;        
         
         $("#add").click(function() {
         	newRowNum += 1;
+        	b = newRowNum;
+        	var a = b-1;
+        	console.log(newRowNum);
         	var addRow = $('#mytable tbody>tr:last');
-
         	var newRow = addRow.clone();
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
-        	$('#InnovationInnovationName', newRow).each(function(i){
-            	var newID = 'data[Innovation][' + newRowNum + '][innovation_name]';
-	            $(this).attr('name',newID);
+        	$('#Innovation'+a+'InnovationName', newRow).each(function(i){
+            	var newName = 'data[Innovation][' + newRowNum + '][innovation_name]';
+	            var newID = 'Innovation' + newRowNum + 'InnovationName';
+	            $(this).attr('name',newName).attr('id',newID);
         	});
-        	$('#InnovationTrainingInspiration', newRow).each(function(i){
-            	var newID = 'data[Innovation][' + newRowNum + '][inspiration]';
-	            $(this).attr('name',newID);
+        	$('#Innovation'+a+'TrainingInspiration', newRow).each(function(i){
+            	var newName = 'data[Innovation][' + newRowNum + '][inspiration]';
+            	var newID = 'Innovation' + newRowNum + 'TrainingInspiration';
+	            $(this).attr('name',newName).attr('id',newID);
         	});
-        	$('#InnovationHowImplemented', newRow).each(function(i){
-            	var newID = 'data[Innovation][' + newRowNum + '][how_implemented]';
-	            $(this).attr('name',newID);
+        	$('#Innovation'+a+'HowImplemented', newRow).each(function(i){
+            	var newName = 'data[Innovation][' + newRowNum + '][how_implemented]';
+	            var newID = 'Innovation' + newRowNum + 'HowImplemented';
+	            $(this).attr('name',newName).attr('id',newID);
         	});
-        	$('#InnovationEvaluationMechanism', newRow).each(function(i){
-            	var newID = 'data[Innovation][' + newRowNum + '][evalution_mechanism]';
-	            $(this).attr('name',newID);
+        	$('#Innovation'+a+'EvaluationMechanism', newRow).each(function(i){
+            	var newName = 'data[Innovation][' + newRowNum + '][evalution_mechanism]';
+	            var newID = 'Innovation' + newRowNum + 'EvaluationMechanism';
+	            $(this).attr('name',newName).attr('id',newID);
         	});
-        	$('#InnovationChanges', newRow).each(function(i){
-            	var newID = 'data[Innovation][' + newRowNum + '][changes]';
-	            $(this).attr('name',newID);
+        	$('#Innovation'+a+'Changes', newRow).each(function(i){
+            	var newName = 'data[Innovation][' + newRowNum + '][changes]';
+	            var newID = 'Innovation' + newRowNum + 'Changes';
+	            $(this).attr('name',newName).attr('id',newID);
         	});
        
         	newRow.insertAfter(addRow);
@@ -56,7 +63,8 @@
 
 		<div class="col-md-12" style="float:none;">
 			<?php echo $this->Form->create('Innovation', array('role' => 'form')); ?>
-			<table class="table table-striped" width="100%" id="mytable">
+			<a  id="add">Add new Row</a></td>
+			<table class="table table-striped" width="100%">
 				<tr>
 					<th colspan="4">Q.4 a. Do you have any special trainings run for PWD employees at your organization?</th>
 					<th><div class="form-group">
@@ -87,7 +95,8 @@
 				</tr>
 				<tr>
 					<th colspan="5" style="text-align:center">&nbsp;</th>
-				</tr>
+				</tr></table>
+				<table id="mytable">
 				<tr>
 					<th>b. Innovation Name</th>
 					<th>c. What was the inspiration behind the innovation?</th>
@@ -97,21 +106,22 @@
 				</tr>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false,'name'=>'data[Innovation][1][innovation_name']));?>
+					<?php echo $this->Form->input('Innovation.0.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false,'name'=>'data[Innovation][1][inspiration']));?>
+					<?php echo $this->Form->input('Innovation.0.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false,'name'=>'data[Innovation][1][how_implemented']));?>
+					<?php echo $this->Form->input('Innovation.0.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false,'name'=>'data[Innovation][1][evalution_mechanism']));?>
+					<?php echo $this->Form->input('Innovation.0.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false,'name'=>'data[Innovation][1][changes]'));?>
+					<?php echo $this->Form->input('Innovation.0.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
 				</div></th>
 				</tr>
+				</table>
 				<tr>
 					<th colspan="4">Would you like to accord your approval for publishing about the case study on innovations you implemented by NSDC?</th>
 					<th><div class="form-group">
