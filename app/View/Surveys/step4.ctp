@@ -1,8 +1,12 @@
+<?php
+	$c = count($this->request->data['Innovation']);
+	if($c==0){ $c = 1; }
+?>
 <script type="text/javascript">
 
  $(document).ready(function() {
 
-        var newRowNum = 0;        
+        var newRowNum = <?php echo $c-1 ?>;
         
         $("#add").click(function() {
         	newRowNum += 1;
@@ -104,23 +108,29 @@
 					<th>e. Evaution mechanism used to evaluate its effectiveness</th>
 					<th>f. What is the significant change observed after implementation of the innovation?</th>
 				</tr>
+				<?php
+				for($i = 0; $i <= $c-1; $i++):
+				?>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Innovation.0.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
+					<?php echo $this->Form->input('Innovation.'.$i.'.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Innovation.0.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
+					<?php echo $this->Form->input('Innovation.'.$i.'.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Innovation.0.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
+					<?php echo $this->Form->input('Innovation.'.$i.'.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Innovation.0.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
+					<?php echo $this->Form->input('Innovation.'.$i.'.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Innovation.0.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
+					<?php echo $this->Form->input('Innovation.'.$i.'.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
 				</div></th>
 				</tr>
+				<?php
+				endfor;
+				?>
 				</table>
 				<tr>
 					<th colspan="4">Would you like to accord your approval for publishing about the case study on innovations you implemented by NSDC?</th>

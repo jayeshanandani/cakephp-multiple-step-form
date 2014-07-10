@@ -1,5 +1,5 @@
 <?php
-	$c = count($this->request->data['Training']);
+	$c = count($this->request->data['UnplannedTraining']);
 	if($c==0){ $c = 1; }
 ?>
 <script type="text/javascript">
@@ -16,7 +16,7 @@
         	var newRow = addRow.clone();
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
-        	$('#Training'+a+'Planned', newRow).each(function(i){
+        	$('#UnplannedTraining'+a+'Planned', newRow).each(function(i){
             	var newName = 'data[Training][' + newRowNum + '][planned]';
             	var newID = 'Training' + newRowNum + 'TNameTargetAudience';
 	            $(this).attr('name',newName);
