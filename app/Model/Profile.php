@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Interview Model
+ * Profile Model
  *
  */
-class Interview extends AppModel {
+class Profile extends AppModel {
 
-	public $hasMany = array('InterviewInnovation','InterviewTraining');
+	public $belongsTo = array('Survey');
 
 	public $uploadDir = 'uploads';
 	
@@ -125,6 +125,7 @@ class Interview extends AppModel {
 				'last' => true,
 				'message' => 'Enter valid detail'
 			),
+		),
 		'non_management' => array(
 			'contact' => array(
 				'rule' => array('phone','/[0-9]+/i'),
@@ -165,7 +166,6 @@ class Interview extends AppModel {
 				'message' => 'Enter valid detail'
 			),
 		),
-		),
 	);
 
 /**
@@ -204,7 +204,8 @@ class Interview extends AppModel {
 	public function beforeSave($options = array()) {
 
 		if (!empty($this->data[$this->alias]['filepath'])) {
-			$this->data[$this->alias]['filename'] = $this->data[$this->alias]['filepath'];
+			$this->data[$this->alias]['path'] = $this->data[$this->alias]['filepath'];
+        	
 		}
 		return parent::beforeSave($options);
 	}
