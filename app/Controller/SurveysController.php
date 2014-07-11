@@ -89,10 +89,14 @@ class SurveysController extends AppController {
 					return $this->redirect(array('action' => 'add','4'));
 				}
 				elseif($step==4){
-					$this->SurveyInnovation->create();
-					if ($this->SurveyInnovation->save($this->request->data)) {
-						$this->Session->setFlash(__('The innovations have been saved.'), 'default', array('class' => 'alert alert-success'));
-						return $this->redirect(array('action' => 'add','2'));
+					if($this->Session->check('Survey')){
+						$this->request->data += $this->Session->read('Survey');
+					}
+					$this->Session->write('Survey',$this->request->data);
+					unset($this->request->data['UnplannedTraining']);
+					if ($this->Survey->saveAll($this->request->data)) {
+						$this->Session->setFlash(__('The survey have been saved.'), 'default', array('class' => 'alert alert-success'));
+						return $this->redirect(array('action' => 'index'));
 					} else {
 						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
