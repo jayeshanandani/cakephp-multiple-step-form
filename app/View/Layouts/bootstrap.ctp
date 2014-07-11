@@ -11,11 +11,9 @@
 
 	<?php
 		echo $this->Html->meta('icon');
-
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
-     echo $this->Html->css('/usermgmt/css/umstyle');
 	?>
 
 
@@ -24,6 +22,14 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <?php
+    echo $this->Html->script('jquery');
+
+    echo $this->fetch('meta');
+    echo $this->fetch('css');
+    echo $this->fetch('script');
+  ?>
+
   </head>
   <body>
     <?php echo $this->Element('navigation'); ?>

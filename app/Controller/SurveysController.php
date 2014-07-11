@@ -94,6 +94,8 @@ class SurveysController extends AppController {
 					}
 					$this->Session->write('Survey',$this->request->data);
 					unset($this->request->data['UnplannedTraining']);
+					unset($this->request->data['Profile']['filename']);
+					//unset($this->request->data['Profile']);
 					if ($this->Survey->saveAll($this->request->data)) {
 						$this->Session->setFlash(__('The survey have been saved.'), 'default', array('class' => 'alert alert-success'));
 						return $this->redirect(array('action' => 'index'));

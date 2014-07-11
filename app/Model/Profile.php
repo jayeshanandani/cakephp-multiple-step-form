@@ -95,77 +95,7 @@ class Profile extends AppModel {
 				'allowEmpty' => TRUE,
 				'last' => TRUE,
 			),
-		),
-		'contact' => array(
-			'contact' => array(
-				'rule' => array('phone','/^[1-9]{1}[0-9]{9}$/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter Valid Phone Number'
-			),
-		),
-		'total_employees' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
-		'management' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
-		'non_management' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
-		'avg_contract_emp_year' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
-		'no_planned_training' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
-		'no_unplanned_training' => array(
-			'contact' => array(
-				'rule' => array('phone','/[0-9]+/i'),
-				'required' => true,
-				'allowEmpty' => false,
-				'on' => null,
-				'last' => true,
-				'message' => 'Enter valid detail'
-			),
-		),
+		)
 	);
 
 /**

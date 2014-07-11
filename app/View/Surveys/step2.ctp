@@ -1,15 +1,25 @@
 <?php
+if (empty($_GET['page'])) {
+   header("HTTP/1.0 400 Bad Request", true, 400);
+   exit('400: Bad Request');
+} ?>
+<?php
+	if(isset($this->request->data['Training'])) {
+		debug($this->request->data['Training']);
 	$c = count($this->request->data['Training']);
 	if($c==0){ $c = 1; }
+} else {
+	$c = 1;
+}
 ?>
 <script type="text/javascript">
 
  $(document).ready(function() {
 
-        var newRowNum = <?php echo $c-1 ?>;        
-        
+			var newRowNum = <?php echo $c-1; ?>;
+
         $("#add").click(function() {
-        	newRowNum += 1;
+            newRowNum += 1;
         	b = newRowNum;
         	var a = b-1;
         	var addRow = $('#mytable tbody>tr:last');
@@ -96,9 +106,16 @@
 	            $(this).attr('id',newID);
         	});
         
-        	newRow.insertAfter(addRow);
+        	newRow.insertAfter(addRow); 
           	return false;
     	});
+
+ 	$("#sub").click(function() {
+        $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
+        newRowNum -= 1;
+          return false;
+
+        });
    
           
     });    
@@ -121,6 +138,7 @@
 		<div class="col-md-12"> <!-- Here actual Model is different but I renamed create to have this form in same model -->
 			<?php echo $this->Form->create('Survey', array('role' => 'form','url' => array('controller' => 'surveys', 'action' => 'add','2'))); ?>
 		 <a  id="add">Add new Row</a></td>
+		 <a  id="sub">Sub Row</a></td>
 			<table class="table table-striped" width="100%" id="mytable">
 			<tr>
 				<th rowspan=2>a. Training Name &amp; Target Audience</th>

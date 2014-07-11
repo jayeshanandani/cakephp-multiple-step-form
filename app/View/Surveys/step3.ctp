@@ -1,6 +1,10 @@
 <?php
+	if(isset($this->request->data['UnplannedTraining'])) {
 	$c = count($this->request->data['UnplannedTraining']);
 	if($c==0){ $c = 1; }
+} else {
+	$c = 1;
+}
 ?>
 <script type="text/javascript">
 
@@ -99,6 +103,13 @@
         	newRow.insertAfter(addRow);
           	return false;
     	});
+ $("#sub").click(function() {
+        $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
+        newRowNum -= 1;
+          return false;
+
+        });
+   
    
           
     });    

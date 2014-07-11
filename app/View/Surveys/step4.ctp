@@ -1,7 +1,11 @@
 <?php
 debug($this->request->data);
+if(isset($this->request->data['InnovationData'])) {
 	$c = count($this->request->data['InnovationData']);
 	if($c==0){ $c = 1; }
+} else {
+	$c = 1;
+}
 ?>
 <script type="text/javascript">
 
@@ -19,34 +23,41 @@ debug($this->request->data);
         	$('input',newRow).val('');
         	$('td:first-child', newRow).html(newRowNum);
         	$('#InnovationData'+a+'InnovationName', newRow).each(function(i){
-            	var newName = 'data[Innovation][' + newRowNum + '][innovation_name]';
-	            var newID = 'Innovation' + newRowNum + 'InnovationName';
+            	var newName = 'data[InnovationData][' + newRowNum + '][innovation_name]';
+	            var newID = 'InnovationData' + newRowNum + 'InnovationName';
 	            $(this).attr('name',newName).attr('id',newID);
         	});
         	$('#InnovationData'+a+'TrainingInspiration', newRow).each(function(i){
-            	var newName = 'data[Innovation][' + newRowNum + '][inspiration]';
-            	var newID = 'Innovation' + newRowNum + 'TrainingInspiration';
+            	var newName = 'data[InnovationData][' + newRowNum + '][inspiration]';
+            	var newID = 'InnovationData' + newRowNum + 'TrainingInspiration';
 	            $(this).attr('name',newName).attr('id',newID);
         	});
         	$('#InnovationData'+a+'HowImplemented', newRow).each(function(i){
-            	var newName = 'data[Innovation][' + newRowNum + '][how_implemented]';
-	            var newID = 'Innovation' + newRowNum + 'HowImplemented';
+            	var newName = 'data[InnovationData][' + newRowNum + '][how_implemented]';
+	            var newID = 'InnovationData' + newRowNum + 'HowImplemented';
 	            $(this).attr('name',newName).attr('id',newID);
         	});
         	$('#InnovationData'+a+'EvaluationMechanism', newRow).each(function(i){
-            	var newName = 'data[Innovation][' + newRowNum + '][evalution_mechanism]';
-	            var newID = 'Innovation' + newRowNum + 'EvaluationMechanism';
+            	var newName = 'data[InnovationData][' + newRowNum + '][evalution_mechanism]';
+	            var newID = 'InnovationData' + newRowNum + 'EvaluationMechanism';
 	            $(this).attr('name',newName).attr('id',newID);
         	});
         	$('#InnovationData'+a+'Changes', newRow).each(function(i){
-            	var newName = 'data[Innovation][' + newRowNum + '][changes]';
-	            var newID = 'Innovation' + newRowNum + 'Changes';
+            	var newName = 'data[InnovationData][' + newRowNum + '][changes]';
+	            var newID = 'InnovationData' + newRowNum + 'Changes';
 	            $(this).attr('name',newName).attr('id',newID);
         	});
        
         	newRow.insertAfter(addRow);
           	return false;
     	});
+ $("#sub").click(function() {
+        $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
+        newRowNum -= 1;
+          return false;
+
+        });
+   
    
           
     });    
