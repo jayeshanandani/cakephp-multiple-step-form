@@ -1,21 +1,17 @@
-<!--<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" style="background-color:#fff;border-color:#fff;">
   <div class="container-fluid">        <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Mapping the Private Sector Skill Development Initiative : In-house Corporate</a>
+          </button><span style="padding-left:33%;">
+          <?php 
+          echo $this->Html->image('Image 1.jpg', array('alt' => 'img1', 'border' => '0')).'&nbsp;&nbsp;&nbsp;';
+          echo $this->Html->image('Image 2.jpg', array('alt' => 'img2', 'border' => '0')).'&nbsp;&nbsp;&nbsp;';
+          echo $this->Html->image('Image 3.png', array('alt' => 'img3', 'border' => '0'));
+      ?></span>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><?php  echo $this->Html->link(__("Profiles"),array('controller' => 'profiles', 'action' => 'index')) ?></li>
-            <li><?php  echo $this->Html->link(__("Planned Training"),array('controller' => 'trainings', 'action' => 'index','planned')) ?></li>
-            <li><?php  echo $this->Html->link(__("Unplanned Training"),array('controller' => 'trainings', 'action' => 'index','unplanned')) ?></li>
-            <li><?php  echo $this->Html->link(__("Innovations"),array('controller' => 'innovations', 'action' => 'index')) ?></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      <!--</div>
+     
+      </div>
     </div>
-    </nav>-->
+    </nav>

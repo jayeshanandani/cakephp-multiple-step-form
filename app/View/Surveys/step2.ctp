@@ -1,11 +1,6 @@
 <?php
-if (empty($_GET['page'])) {
-   header("HTTP/1.0 400 Bad Request", true, 400);
-   exit('400: Bad Request');
-} ?>
-<?php
 	if(isset($this->request->data['Training'])) {
-		debug($this->request->data['Training']);
+		
 	$c = count($this->request->data['Training']);
 	if($c==0){ $c = 1; }
 } else {
@@ -111,8 +106,16 @@ if (empty($_GET['page'])) {
     	});
 
  	$("#sub").click(function() {
-        $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
-        newRowNum -= 1;
+ 		if( $('#mytable tbody>tr:last').closest('tr').is('tr:only-child') ) {
+ 			
+    		alert('cannot delete last row');
+		}
+		else {
+   			 $('#mytable tbody >tr:last').closest('tr').remove();
+   			 newRowNum -= 1;
+		}
+       // $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
+        
           return false;
 
         });
@@ -136,10 +139,15 @@ if (empty($_GET['page'])) {
 	<div class="row">
 
 		<div class="col-md-12"> <!-- Here actual Model is different but I renamed create to have this form in same model -->
+		<table class="table table-striped" >
+				<tr>
+					<th style="text-align:center;color:#fff;background-color:gray;border-radius:6px;">Planned Training</th>
+				</tr>
+			</table>
 			<?php echo $this->Form->create('Survey', array('role' => 'form','url' => array('controller' => 'surveys', 'action' => 'add','2'))); ?>
-		 <a  id="add">Add new Row</a></td>
-		 <a  id="sub">Sub Row</a></td>
+			
 			<table class="table table-striped" width="100%" id="mytable">
+			<thead>
 			<tr>
 				<th rowspan=2>a. Training Name &amp; Target Audience</th>
 				<th rowspan=2>b. Is this training organized departmentwise ? If yes please mention the department</th>
@@ -161,6 +169,9 @@ if (empty($_GET['page'])) {
 				<th>Others(in %)</th>
 				
 				</tr>
+				</thead>
+				<tbody>
+		
 				<?php
 				for($i = 0; $i <= $c-1; $i++):
 				?>
@@ -168,48 +179,53 @@ if (empty($_GET['page'])) {
 					<th><div class="form-group">
 					<?php
 						echo $this->Form->input('Training.'.$i.'.planned',array('type'=>'hidden','value'=>1));
-						echo $this->Form->input('Training.'.$i.'.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'Training Name & Target Audience', 'label' => false));
+						echo $this->Form->input('Training.'.$i.'.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'Training Name & Target Audience', 'label' => false,'required'=>true));
 					?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.training_department_wise', array('class' => 'form-control', 'placeholder' => 'Training Department Wise', 'label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.training_department_wise', array('class' => 'form-control', 'placeholder' => 'Training Department Wise', 'label' => false,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('Training.'.$i.'.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('Training.'.$i.'.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.onjob_training', array('class' => 'form-control', 'placeholder' => 'Onjob Training','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('Training.'.$i.'.onjob_training', array('class' => 'form-control', 'placeholder' => 'Onjob Training','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5));?>
+					<?php echo $this->Form->input('Training.'.$i.'.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false,'required'=>true,'type'=>'number'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.outsourced', array('class' => 'form-control', 'placeholder' => 'Outsourced','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.outsourced', array('class' => 'form-control', 'placeholder' => 'Outsourced','label' => false,'required'=>true));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false,'required'=>true,'type'=>'number','min'=>0));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Training.'.$i.'.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false));?>
+					<?php echo $this->Form->input('Training.'.$i.'.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false,'required'=>true,'type'=>'number','min'=>0));?>
 				</div></th>
 				</tr>
 				<?php
 				endfor;
 				?>
+				</tbody>
 			</table>	
-
+<table class="table table-striped">
+				<tr>
+					<th><a id="add">Add new Row</a> | <a id="sub">Delete Row</a></th>
+				</tr>
+			</table>
 			<div class="row">
 		<div class="col-md-10">
 			<?php	echo $this->Html->link('Previous step',array('controller'=>'surveys','action' => 'add','1'),
@@ -217,7 +233,7 @@ if (empty($_GET['page'])) {
 	</div>
 	<div class="col-md-1">			
 	<div class="form-group">
-					<?php echo $this->Form->submit(__('Towards Step 3'), array('class' => 'btn btn-default')); ?>
+					<?php echo $this->Form->submit(__('Next Step'), array('class' => 'btn btn-default')); ?>
 				</div> 
 			</div>
 			</div>

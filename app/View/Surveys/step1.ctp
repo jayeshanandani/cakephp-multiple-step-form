@@ -34,12 +34,12 @@
 			<tr>
 				<th>Q.1.c Designation</th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.designation', array('class' => 'form-control', 'placeholder' => false));?>
+					<?php echo $this->Form->input('Profile.designation', array('class' => 'form-control', 'placeholder' => false,'label'=>false));?>
 					<?php echo $this->Form->error('Profile.designation'); ?>
 				</div></th>
 				<th>Q.1.d Contact No.</th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.contact', array('class' => 'form-control', 'placeholder' => 'Contact','lable' => false,'pattern'=>'/^[1-9]{1}[0-9]{9}$/i'));?>
+					<?php echo $this->Form->input('Profile.contact', array('class' => 'form-control', 'placeholder' => 'Contact','label' => false,'pattern'=>'(7|8|9)\d{9}'));?>
 					<?php echo $this->Form->error('Profile.contact'); ?>
 				</div></th>
 			</tr>
@@ -96,19 +96,19 @@
 			<tr>
 
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.total_employees', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Total Employees','label' => false));?>
+					<?php echo $this->Form->input('Profile.total_employees', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Total Employees','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.total_employees'); ?>
 				</div></th>
 				<th>	<div class="form-group">
-					<?php echo $this->Form->input('Profile.management', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Management','label' => false));?>
+					<?php echo $this->Form->input('Profile.management', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Management','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.management'); ?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.non_management', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Non Management','label' => false));?>
+					<?php echo $this->Form->input('Profile.non_management', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Non Management','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.non_management'); ?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.avg_contract_emp_year', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Avg Contract Emp Year','label' => 'Avg. No of Contract Employees per Year','label' => false));?>
+					<?php echo $this->Form->input('Profile.avg_contract_emp_year', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Avg Contract Emp Year','label' => 'Avg. No of Contract Employees per Year','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.avg_contract_emp_year'); ?>
 				</div></th>
 			</tr>
@@ -126,7 +126,7 @@
 		
 		<table class="table table-striped">
 			<tr>
-				<th colspan="2" style="text-align:center">Training Methods</th>
+				<th colspan="2" style="text-align:center;color:#fff;background-color:gray;border-radius:6px;">Training Methods</th>
 			</tr>
 			<tr>
 				<th colspan="5">&nbsp;</th>
@@ -140,11 +140,11 @@
 			</tr>
 			<tr>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.no_planned_training', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Number of Planned Training','label' => false));?>
+					<?php echo $this->Form->input('Profile.no_planned_training', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Number of Planned Training','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.no_planned_training'); ?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('Profile.no_unplanned_training', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Number of Unplanned Training','label' => false));?>
+					<?php echo $this->Form->input('Profile.no_unplanned_training', array('type'=>'number','class' => 'form-control', 'placeholder' => 'Number of Unplanned Training','label' => false,'min' => 0));?>
 					<?php echo $this->Form->error('Profile.no_unplanned_training'); ?>
 				</div></th>
 			</tr>
@@ -155,7 +155,7 @@
 	</div>
 	<div class="col-md-1">			
 	<div class="form-group">
-					<?php echo $this->Form->submit(__('Towards Step 2'), array('class' => 'btn btn-default')); ?>
+					<?php echo $this->Form->submit(__('Next Step'), array('class' => 'btn btn-default')); ?>
 				</div> 
 			</div>
 			</div>

@@ -26,6 +26,15 @@ class SurveysController extends AppController {
 		$this->set('Surveys', $this->Paginator->paginate());
 	}
 
+	public function beforeFilter() {
+	    $this->layout = 'bootstrap';
+        $this->Auth->allow('add','homepage','thankyou');
+    }
+    public function homepage() {
+	}
+	public function thankyou() {
+	}
+
 /**
  * view method
  *
@@ -94,12 +103,11 @@ class SurveysController extends AppController {
 					}
 					$this->Session->write('Survey',$this->request->data);
 					unset($this->request->data['Profile']['filename']);
-					//unset($this->request->data['Profile']);
 					if ($this->Survey->saveAll($this->request->data)) {
 						$this->Survey->Training->save($this->request->data['UnplannedTraining']);
 						$this->Session->setFlash(__('The survey have been saved.'), 'default', array('class' => 'alert alert-success'));
 						$this->Session->delete('Survey');
-						return $this->redirect(array('action' => 'thank_you'));
+						return $this->redirect(array('action' => 'thankyou'));
 					} else {
 						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}

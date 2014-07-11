@@ -1,5 +1,4 @@
 <?php
-debug($this->request->data);
 if(isset($this->request->data['InnovationData'])) {
 	$c = count($this->request->data['InnovationData']);
 	if($c==0){ $c = 1; }
@@ -51,15 +50,21 @@ if(isset($this->request->data['InnovationData'])) {
         	newRow.insertAfter(addRow);
           	return false;
     	});
- $("#sub").click(function() {
-        $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
-        newRowNum -= 1;
+ 
+ 	$("#sub").click(function() {
+ 		if( $('#mytable tbody>tr:last').closest('tr').is('tr:only-child') ) {
+    		alert('cannot delete last row');
+		}
+		else {
+   			 $('#mytable tbody >tr:last').closest('tr').remove();
+   			 newRowNum -= 1;
+		}
+       // $('#mytable tbody>tr:last').last().remove('#mytable tbody>tr:last');
+        
           return false;
 
         });
-   
-   
-          
+
     });    
 </script>
 
@@ -79,7 +84,7 @@ if(isset($this->request->data['InnovationData'])) {
 
 		<div class="col-md-12" style="float:none;">
 			<?php echo $this->Form->create('Survey', array('role' => 'form')); ?>
-			<a  id="add">Add new Row</a></td>
+
 			<table class="table table-striped" width="100%">
 				<tr>
 					<th colspan="4">Q.4 a. Do you have any special trainings run for PWD employees at your organization?</th>
@@ -98,7 +103,7 @@ if(isset($this->request->data['InnovationData'])) {
 					<th colspan="5" style="text-align:center">&nbsp;</th>
 				</tr>
 				<tr>
-					<th colspan="5" style="text-align:center">Innovation</th>
+					<th colspan="5" style="text-align:center;color:#fff;background-color:gray;border-radius:6px;">Innovation</th>
 				</tr>
 				<tr>
 					<th colspan="5" style="text-align:center">&nbsp;</th>
@@ -112,7 +117,8 @@ if(isset($this->request->data['InnovationData'])) {
 				<tr>
 					<th colspan="5" style="text-align:center">&nbsp;</th>
 				</tr></table>
-				<table id="mytable">
+				<table id="mytable" class="table table-striped">
+				<thead>
 				<tr>
 					<th>b. Innovation Name</th>
 					<th>c. What was the inspiration behind the innovation?</th>
@@ -120,30 +126,39 @@ if(isset($this->request->data['InnovationData'])) {
 					<th>e. Evaution mechanism used to evaluate its effectiveness</th>
 					<th>f. What is the significant change observed after implementation of the innovation?</th>
 				</tr>
+				</thead>
+				<tbody>
 				<?php
 				for($i = 0; $i <= $c-1; $i++):
 				?>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false,'required'=>true));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false,'required'=>true));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false,'required'=>true));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false,'required'=>true));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false,'required'=>true));?>
 				</div></th>
 				</tr>
 				<?php
 				endfor;
 				?>
+				</tbody>
 				</table>
+					<table class="table table-striped">
+				<tr>
+					<th><a id="add">Add new Row</a> | <a id="sub">Delete Row</a></th>
+				</tr>
+			</table>	
+				<table class="table table-striped">
 				<tr>
 					<th colspan="4">Would you like to accord your approval for publishing about the case study on innovations you implemented by NSDC?</th>
 					<th><div class="form-group">
