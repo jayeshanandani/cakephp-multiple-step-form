@@ -6,7 +6,7 @@ App::uses('AppModel', 'Model');
  */
 class Survey extends AppModel {
 
-	public $hasOne = array('Profile');
+	public $hasOne = array('Profile','Innovation');
 
-	public $hasMany = array('Innovation','Training');
+	public $hasMany = array('InnovationData','Training');
 }
