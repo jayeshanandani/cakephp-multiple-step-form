@@ -4,7 +4,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button><span style="padding-left:33%;">
+          </button><span style="margin-left:31%;">
           <?php 
           echo $this->Html->image('Image 1.jpg', array('alt' => 'img1', 'border' => '0')).'&nbsp;&nbsp;&nbsp;';
           echo $this->Html->image('Image 2.jpg', array('alt' => 'img2', 'border' => '0')).'&nbsp;&nbsp;&nbsp;';

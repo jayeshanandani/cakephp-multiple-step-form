@@ -108,7 +108,7 @@ class SurveysController extends AppController {
 					unset($this->request->data['Profile']['filename']);
 					if ($this->Survey->saveAll($this->request->data)) {
 						unset($this->request->data['Innovation']);
-						unset($this->request->data['Innovation_data']);
+						unset($this->request->data['InnovationData']);
 						unset($this->request->data['Profile']);
 						unset($this->request->data['Training']);
 						if($this->request->data['UnplannedTraining']) {
@@ -116,10 +116,9 @@ class SurveysController extends AppController {
 							$this->Survey->saveAll($this->request->data);
 					}
 						$this->Session->setFlash(__('The survey have been saved.'), 'default', array('class' => 'alert alert-success'));
-						//$this->Session->delete('Survey');
+						$this->Session->delete('Survey');
 						return $this->redirect(array('action' => 'thankyou'));
 					} else {
-						debug($this->validationErrors);
 						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}
