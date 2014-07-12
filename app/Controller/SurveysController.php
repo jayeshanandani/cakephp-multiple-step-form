@@ -66,7 +66,7 @@ class SurveysController extends AppController {
 			            $this->request->data['Profile']['file_name'] = $name;
 			            $this->request->data['Profile']['file_type'] = $extension;
 					if ($this->Survey->save($this->request->data)) {
-						$this->Session->setFlash(__('The Survey has been saved.'), 'default', array('class' => 'alert alert-success'));
+						//$this->Session->setFlash(__('The Survey has been saved.'), 'default', array('class' => 'alert alert-success'));
 						$this->request->data['Survey']['id'] = $this->Survey->getLastInsertID();
 						if($this->Session->check('Survey')){
 							$this->request->data += $this->Session->read('Survey');
@@ -82,6 +82,8 @@ class SurveysController extends AppController {
 					}
 				}
 				elseif($step==2){
+				$this->Survey->set($this->request->data);
+				if($this->Survey->Training->validates()) {
 					if($this->Session->check('Survey')){
 						$this->request->data += $this->Session->read('Survey');
 					}
@@ -89,6 +91,7 @@ class SurveysController extends AppController {
 					if($this->request->data['Profile']['no_unplanned_training']==0){ $stage = 4; }
 					else { $stage = 3; }
 					return $this->redirect(array('action' => 'add',$stage));
+				}
 				}
 				elseif($step==3){
 					if($this->Session->check('Survey')){
@@ -104,11 +107,19 @@ class SurveysController extends AppController {
 					$this->Session->write('Survey',$this->request->data);
 					unset($this->request->data['Profile']['filename']);
 					if ($this->Survey->saveAll($this->request->data)) {
-						$this->Survey->Training->save($this->request->data['UnplannedTraining']);
+						unset($this->request->data['Innovation']);
+						unset($this->request->data['Innovation_data']);
+						unset($this->request->data['Profile']);
+						unset($this->request->data['Training']);
+						if($this->request->data['UnplannedTraining']) {
+							$this->request->data['Training'] = $this->request->data['UnplannedTraining']; 
+							$this->Survey->saveAll($this->request->data);
+					}
 						$this->Session->setFlash(__('The survey have been saved.'), 'default', array('class' => 'alert alert-success'));
-						$this->Session->delete('Survey');
+						//$this->Session->delete('Survey');
 						return $this->redirect(array('action' => 'thankyou'));
 					} else {
+						debug($this->validationErrors);
 						$this->Session->setFlash(__('Step 4 could not be saved. Please, try again.'), 'default', array('class' => 'alert alert-danger'));
 					}
 				}

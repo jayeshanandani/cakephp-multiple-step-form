@@ -1,9 +1,9 @@
 <?php
 if(isset($this->request->data['InnovationData'])) {
 	$c = count($this->request->data['InnovationData']);
-	if($c==0){ $c = 1; }
+	if($c==0){ $c = 5; }
 } else {
-	$c = 1;
+	$c = 5;
 }
 ?>
 <script type="text/javascript">
@@ -73,7 +73,6 @@ if(isset($this->request->data['InnovationData'])) {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1><?php echo __('Add Innovation'); ?></h1>
 			</div>
 		</div>
 	</div>
@@ -133,19 +132,19 @@ if(isset($this->request->data['InnovationData'])) {
 				?>
 				<tr>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.innovation_name', array('class' => 'form-control', 'placeholder' => 'Innovation Name', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.inspiration', array('class' => 'form-control', 'placeholder' => 'Inspiration', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.how_implemented', array('class' => 'form-control', 'placeholder' => 'How Implemented', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.evalution_mechanism', array('class' => 'form-control', 'placeholder' => 'Evalution Mechanism', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('InnovationData.'.$i.'.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('InnovationData.'.$i.'.changes', array('class' => 'form-control', 'placeholder' => 'Changes', 'label' => false));?>
 				</div></th>
 				</tr>
 				<?php
@@ -160,16 +159,17 @@ if(isset($this->request->data['InnovationData'])) {
 			</table>	
 				<table class="table table-striped">
 				<tr>
-					<th colspan="4">Would you like to accord your approval for publishing about the case study on innovations you implemented by NSDC?</th>
-					<th><div class="form-group">
+					<th colspan="4">Would you like to accord your approval for publishing about the case study on innovations you implemented by NSDC?
+					<div class="form-group">
 					<?php echo $this->Form->input('Innovation.approval_publishing', array('class' => 'form-control', 'placeholder' => 'Approval Publishing', 'label' => false));?>
 				</div></th>
 				</tr>
 				<tr>
-					<th colspan="4">Q.6 One of the main objective of this project is to identify innovative models implemented by vocational training institutes.This model can serve as a benchmark for others to follow and implement so that more students can get similar benefits in order areas as well. would you like to accord your approval for publishing about your institute as a case study by NSDC? Yes/No</th>
-					<th><div class="form-group">
+					<th colspan="4">Q.6 One of the main objective of this project is to identify innovative models implemented by vocational training institutes.This model can serve as a benchmark for others to follow and implement so that more students can get similar benefits in order areas as well. would you like to accord your approval for publishing about your institute as a case study by NSDC? Yes/No
+					<div class="form-group">
 					<?php echo $this->Form->input('Innovation.approval_publishing_institute', array('class' => 'form-control', 'placeholder' => 'Approval Publishing Institute','label' => false));?>
 				</div></th>
+					
 				</tr>
 			</table>
 		</div>

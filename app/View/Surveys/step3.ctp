@@ -1,9 +1,9 @@
 <?php
 	if(isset($this->request->data['UnplannedTraining'])) {
 	$c = count($this->request->data['UnplannedTraining']);
-	if($c==0){ $c = 1; }
+	if($c==0){ $c = 5; }
 } else {
-	$c = 1;
+	$c = 5;
 }
 ?>
 <script type="text/javascript">
@@ -130,7 +130,6 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1><?php echo __('Add Unplanned Training'); ?></h1>
 			</div>
 		</div>
 	</div>
@@ -177,40 +176,40 @@
 				<tr>
 					<th><div class="form-group">
 					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.planned',array('type'=>'hidden','value'=>0)); ?>
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Name & Target Audience', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.t_name_target_audience', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Name & Target Audience', 'label' => false));?>
 				</div></th>
 					<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.UnplannedTraining_department_wise', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Department Wise', 'label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.training_department_wise', array('class' => 'form-control', 'placeholder' => 'UnplannedTraining Department Wise', 'label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true,'type'=>'number'));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.class_room', array('class' => 'form-control', 'placeholder' => 'Class Room','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'type'=>'number'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true,'type'=>'number'));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.practical', array('class' => 'form-control', 'placeholder' => 'Practical','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'type'=>'number'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.onjob_UnplannedTraining', array('class' => 'form-control', 'placeholder' => 'Onjob UnplannedTraining','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true,'type'=>'number'));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.onjob_training', array('class' => 'form-control', 'placeholder' => 'Onjob UnplannedTraining','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'type'=>'number'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'required'=>true,'type'=>'number'));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.others', array('class' => 'form-control', 'placeholder' => 'Others','label' => false, 'min' => 0, 'max' => 100 , 'step' => 5,'type'=>'number'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.used_technology', array('class' => 'form-control', 'placeholder' => 'Used Technology','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.duration', array('class' => 'form-control', 'placeholder' => 'Duration','label' => false));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false,'required'=>true,'min'=>0));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.no_trainer', array('class' => 'form-control', 'placeholder' => 'No Trainer','label' => false,'min'=>0));?>
+				</div></th>
+					<th><div class="form-group">
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false,'pattern'=>'[0-9]*'));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.batch_size', array('class' => 'form-control', 'placeholder' => 'Batch Size','label' => false,'required'=>true,'type'=>'number','min'=>0));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false,'type'=>'number','min'=>0));?>
 				</div></th>
 				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.avg_no_emp_train_year', array('class' => 'form-control', 'placeholder' => 'Avg No Emp Train Year','label' => false,'required'=>true,'type'=>'number','min'=>0));?>
-				</div></th>
-				<th><div class="form-group">
-					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.other_remarks', array('class' => 'form-control', 'placeholder' => 'Other','label' => false,'required'=>true));?>
+					<?php echo $this->Form->input('UnplannedTraining.'.$i.'.other_remarks', array('class' => 'form-control', 'placeholder' => 'Other','label' => false));?>
 				</div></th>
 				</tr>
 				<?php

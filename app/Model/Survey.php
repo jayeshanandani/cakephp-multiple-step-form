@@ -9,4 +9,5 @@ class Survey extends AppModel {
 	public $hasOne = array('Profile','Innovation');
 
 	public $hasMany = array('InnovationData','Training');
+   
 }
